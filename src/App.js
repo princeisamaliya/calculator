@@ -4,6 +4,7 @@ class App extends Component {
   render() {
     return (
       <div className="calculator">
+        <div id="display">ss</div>
         <button id="clear">AC</button>
         <button id="divide">/</button>
         <button id="multiply">*</button>
