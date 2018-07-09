@@ -1,18 +1,28 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="calculator">
+        <button id="clear">AC</button>
+        <button id="divide">/</button>
+        <button id="multiply">*</button>
+        <button id="seven">7</button>
+        <button id="eight">8</button>
+        <button id="nine">9</button>
+        <button id="subtract">-</button>
+        <button id="four">4</button>
+        <button id="five">5</button>
+        <button id="six">6</button>
+
+        <button id="add">+</button>
+
+        <button id="one">1</button>
+        <button id="two">2</button>
+        <button id="three">3</button>
+        <button id="equals">=</button>
+        <button id="zero">0</button>
+        <button id="decimal">.</button>
       </div>
     );
   }
