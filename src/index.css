@@ -15,12 +15,11 @@ button {
   margin: 0 auto;
   display: block;
 }
-button#clear {
-  width: 100px;
+button.red {
   background-color: #820b0b;
   color: #fff;
 }
 
-button#zero {
+button.double-column {
   width: 100px;
 }
