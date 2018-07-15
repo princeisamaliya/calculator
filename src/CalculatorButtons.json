@@ -74,7 +74,7 @@
     "id": "clear",
     "css": ["double-column", "red"],
     "order": 1,
-    "type": "operator"
+    "type": "clear"
   },
   {
     "value": "/",
@@ -109,7 +109,7 @@
     "id": "equals",
     "css": ["single-column"],
     "order": 15,
-    "type": "operator"
+    "type": "calculate"
   },
   {
     "value": ".",
