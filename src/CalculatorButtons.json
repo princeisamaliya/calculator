@@ -116,6 +116,6 @@
     "id": "decimal",
     "css": ["single-column"],
     "order": 17,
-    "type": "number"
+    "type": "decimal"
   }
 ]

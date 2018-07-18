@@ -21,14 +21,20 @@ class Calculator extends Component {
     this.handleClear = this.handleClear.bind(this);
     this.handleOperators = this.handleOperators.bind(this);
     this.handleCalculation = this.handleCalculation.bind(this);
+    this.handleDecimal = this.handleDecimal.bind(this);
   }
-
+  handleDecimal(e) {
+    // let testdecimal = this.state.currentVal.slice("-1");
+    // console.log(testdecimal);
+    this.appendToCurrentVal({
+      currentVal: this.state.currentVal,
+      newVal: findButton({ id: e.target.value })
+    });
+  }
   handleNumbers(e) {
-    if(e.target.value === "zero" && this.state.currentVal.length === 0){
-        
-      this.setState({ currentVal: [] }) 
-      
-    }else{
+    if (e.target.value === "zero" && this.state.currentVal.length === 0) {
+      this.setState({ currentVal: [] });
+    } else {
       this.appendToCurrentVal({
         currentVal: this.state.currentVal,
         newVal: findButton({ id: e.target.value })
@@ -65,8 +71,11 @@ class Calculator extends Component {
     // then handle math
     const result = this.state.currentVal.reduce(
       (result, val) => {
-      //  put logic here using doMath from HelperFunctions.js to handle calculation
-        console.log(val)
+        //  put logic here using doMath from HelperFunctions.js to handle calculation
+        let expression = this.state.formula;
+        let answer =
+          Math.round(1000000000000 * eval(expression)) / 1000000000000;
+        console.log(val.value);
         return result;
       },
       { value: "0", type: "number" }
@@ -86,6 +95,7 @@ class Calculator extends Component {
           operator={this.handleOperators}
           clear={this.handleClear}
           calculate={this.handleCalculation}
+          decimal={this.handleDecimal}
         />
       </div>
     );
