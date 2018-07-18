@@ -24,10 +24,16 @@ class Calculator extends Component {
   }
 
   handleNumbers(e) {
-    this.appendToCurrentVal({
-      currentVal: this.state.currentVal,
-      newVal: findButton({ id: e.target.value })
-    });
+    if(e.target.value === "zero" && this.state.currentVal.length === 0){
+        
+      this.setState({ currentVal: [] }) 
+      
+    }else{
+      this.appendToCurrentVal({
+        currentVal: this.state.currentVal,
+        newVal: findButton({ id: e.target.value })
+      });
+    }
   }
 
   handleOperators(e) {
@@ -49,7 +55,7 @@ class Calculator extends Component {
   }
 
   handleClear() {
-    this.setState({ currentVal: [] });
+    this.setState({ currentVal: [], formula: [] });
   }
 
   handleCalculation(e) {
@@ -60,7 +66,7 @@ class Calculator extends Component {
     const result = this.state.currentVal.reduce(
       (result, val) => {
       //  put logic here using doMath from HelperFunctions.js to handle calculation
-
+        console.log(val)
         return result;
       },
       { value: "0", type: "number" }
