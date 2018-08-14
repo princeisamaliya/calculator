@@ -36,6 +36,9 @@ class Calculator extends Component {
       this.setState({ currentVal: [...this.state.currentVal.pop()] });
     }
 
+    // if it is first value, then only allow minus
+    if (!this.state.currentVal.length && e.target.value !== 'subtract') return;
+
     this.appendToCurrentVal({
       currentVal: this.state.currentVal,
       newVal: findButton({ id: e.target.value })
@@ -56,15 +59,26 @@ class Calculator extends Component {
     // first, save currentVal to memory
     this.setState({ formula: [...this.state.currentVal] });
 
-    // then handle math
-    const result = this.state.currentVal.reduce(
+    // second, merge all number values
+    const combinedNumbers = this.state.currentVal.reduce(
       (result, val) => {
-      //  put logic here using doMath from HelperFunctions.js to handle calculation
+        // if first number or previous value is not number or if current value is operator then push to array
+        const [lastValue] = result.slice(-1);
+        if (!result.length || lastValue.type !== 'number' || val.type === 'operator') {
+          result.push(val);
+        } else {
+          // otherwise, combine current value with previous value
+          lastValue.value += val.value;
+        }
 
         return result;
-      },
-      { value: "0", type: "number" }
+      }, []
     );
+
+    console.log(combinedNumbers);
+    // third, do all * and / operators
+    let result;
+    // last, do all + and - operators
 
     // once calculation is done, set currentVal to the result
     this.setState({ currentVal: [...result] });
