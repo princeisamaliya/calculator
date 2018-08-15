@@ -63,7 +63,7 @@ class Calculator extends Component {
   handleClear() {
     this.setState({ currentVal: [], formula: [] });
   }
-
+  doMath(x) {}
   handleCalculation(e) {
     // first, save currentVal to memory
     this.setState({ formula: [...this.state.currentVal] });
@@ -72,10 +72,9 @@ class Calculator extends Component {
     const result = this.state.currentVal.reduce(
       (result, val) => {
         //  put logic here using doMath from HelperFunctions.js to handle calculation
-        let expression = this.state.formula;
-        let answer =
-          Math.round(1000000000000 * eval(expression)) / 1000000000000;
-        console.log(val.value);
+        // console.log(val);
+        console.log(doMath["+"](val.value));
+        result + val;
         return result;
       },
       { value: "0", type: "number" }
