@@ -3,11 +3,7 @@ import Buttons from "./Buttons";
 import Formula from "./Formula";
 import Output from "./Output";
 
-import {
-  checkIfPreviousValueIsOperator,
-  findButton,
-  doMath
-} from "./HelperFunctions";
+import { checkIfPreviousValueIsOperator, findButton } from "./HelperFunctions";
 
 class Calculator extends Component {
   constructor(props) {
@@ -37,7 +33,7 @@ class Calculator extends Component {
     }
 
     // if it is first value, then only allow minus
-    if (!this.state.currentVal.length && e.target.value !== 'subtract') return;
+    if (!this.state.currentVal.length && e.target.value !== "subtract") return;
 
     this.appendToCurrentVal({
       currentVal: this.state.currentVal,
@@ -60,28 +56,47 @@ class Calculator extends Component {
     this.setState({ formula: [...this.state.currentVal] });
 
     // second, merge all number values
-    const combinedNumbers = this.state.currentVal.reduce(
-      (result, val) => {
-        // if first number or previous value is not number or if current value is operator then push to array
-        const [lastValue] = result.slice(-1);
-        if (!result.length || lastValue.type !== 'number' || val.type === 'operator') {
-          result.push(val);
-        } else {
-          // otherwise, combine current value with previous value
-          lastValue.value += val.value;
-        }
+    const combinedNumbers = this.state.currentVal.reduce((result, val) => {
+      // if first number or previous value is not number or if current value is operator then push to array
+      const [lastValue] = result.slice(-1);
+      if (
+        !result.length ||
+        lastValue.type !== "number" ||
+        val.type === "operator"
+      ) {
+        result.push(val);
+      } else {
+        // otherwise, combine current value with previous value
+        lastValue.value += val.value;
+      }
 
-        return result;
-      }, []
+      return result;
+    }, []);
+
+    let isOperator = combinedNumbers.find(
+      operatorType => operatorType.type === "operator"
     );
 
-    console.log(combinedNumbers);
     // third, do all * and / operators
     let result;
     // last, do all + and - operators
+    if (isOperator.value === "+") {
+      let arrySum = [];
+      for (var i = 0; i < combinedNumbers.length; i++) {
+        arrySum.push(combinedNumbers[i].value);
+      }
+      const index = arrySum.indexOf("+");
+      if (index !== -1) {
+        arrySum.splice(index, 1);
+      }
+      var total = [arrySum.join()].reduce(
+        (accumulator, currentValue) => accumulator + currentValue
+      );
+      console.log(total);
+    }
 
     // once calculation is done, set currentVal to the result
-    this.setState({ currentVal: [...result] });
+    // this.setState({ currentVal: [...result] });
   }
 
   render() {
