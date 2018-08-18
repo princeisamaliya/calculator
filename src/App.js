@@ -84,10 +84,10 @@ class Calculator extends Component {
       let arrySum = [];
       for (var i = 0; i < combinedNumbers.length; i++) {
         arrySum.push(combinedNumbers[i].value);
-      }
-      const index = arrySum.indexOf("+");
-      if (index !== -1) {
-        arrySum.splice(index, 1);
+        const index = arrySum.indexOf("+");
+        if (index !== -1) {
+          arrySum.splice(index, 1);
+        }
       }
       var total = [arrySum.join()].reduce(
         (accumulator, currentValue) => accumulator + currentValue
